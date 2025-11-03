@@ -54,7 +54,7 @@ colnames(events_data) <- c("Name_Date", #chr
                           "Unadjusted_Cost_Millions", #chr
                           "Deaths") # chr
 
-events_data$Begin_Date <- as.Date(as.character(events_data$Begin_Date),  #convert num -> chr
+events_data$Begin_Date <- as.Date(as.character(events_data$Begin_Date),
                           format = "%Y%m%d")
 
 events_data$End_Date <- as.Date(as.character(events_data$End_Date), 
