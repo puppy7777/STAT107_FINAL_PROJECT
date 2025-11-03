@@ -50,9 +50,14 @@ colnames(events_data) <- c("Name_Date", #chr
                            "Disaster_Type", #chr
                            "Begin_Date", #num -> chr (date format)
                            "End_Date", #num -> chr (date format)
-                          "CPI_Adjusted_Cost_Millions", #chr
-                          "Unadjusted_Cost_Millions", #chr
-                          "Deaths") # chr
+                          "CPI_Adjusted_Cost_Millions", #num
+                          "Unadjusted_Cost_Millions", #num
+                          "Deaths") #int
+
+events_data$CPI_Adjusted_Cost_Millions <- as.numeric(events_data$CPI_Adjusted_Cost_Millions)
+events_data$Unadjusted_Cost_Millions <- as.numeric(events_data$Unadjusted_Cost_Millions)
+events_data$Deaths <- as.integer(events_data$Deaths)
+
 
 events_data$Begin_Date <- as.Date(as.character(events_data$Begin_Date),
                           format = "%Y%m%d")
