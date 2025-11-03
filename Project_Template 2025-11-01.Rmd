@@ -1,5 +1,5 @@
 ---
-title: "STATS_107_HalfwayProj 2025-11-01"
+title: "STATS_107_HalfwayProj 2025-11-02"
 author: "Jessica Xia"
 date: "2025-10-24"
 output:
