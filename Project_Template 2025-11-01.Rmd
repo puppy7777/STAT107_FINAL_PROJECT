@@ -24,7 +24,7 @@ When you click the **Knit** button a document will be generated that includes bo
 - Sample sizes and variable types  
 - Any transformations or merges  
 
-```{r reset enrm}
+```{r reset env}
 rm(list = ls())
 ```
 
