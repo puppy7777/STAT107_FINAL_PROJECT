@@ -1,0 +1,89 @@
+---
+title: "STATS_107_HalfwayProj 2025-11-01"
+author: "Jessica Xia"
+date: "2025-10-24"
+output:
+  html_document: default
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+---
+# Data
+- Describe data source(s) and variables  
+- Cleaning steps and missing data handling  
+- Sample sizes and variable types  
+- Any transformations or merges  
+
+```{r reset enrm}
+rm(list = ls())
+```
+
+
+```{r datasets}
+#events in US from 1980 - 2024
+events_data <- read.csv("events-US-1980-2024-Q4.csv")
+events_data <- na.omit(events_data)
+events_data <- events_data[-c(1, 2), ]
+
+#insurance data
+insurance_data <- read.csv("all_insurance_costs.csv")
+insurance_data <- na.omit(insurance_data)
+
+#property insurance cost data
+prop_insurance <- read.csv("property_insurance_costs.csv")
+prop_insurance <- na.omit(prop_insurance)
+```
+
+
+```{r}
+colnames(events_data) <- c("Name_Date", #chr
+                           "Disaster_Type", #chr
+                           "Begin_Date", #num -> chr (date format)
+                           "End_Date", #num -> chr (date format)
+                          "CPI_Adjusted_Cost_Millions", #chr
+                          "Unadjusted_Cost_Millions", #chr
+                          "Deaths") # chr
+
+events_data$Begin_Date <- as.Date(as.character(events_data$Begin_Date),  #convert num -> chr
+                          format = "%Y%m%d")
+
+events_data$End_Date <- as.Date(as.character(events_data$End_Date), 
+                        format = "%Y%m%d")
+
+head(events_data)
+dim(events_data)
+```
+
+
+```{r}
+colnames(insurance_data) <- c("PPI_Series_ID", 
+                              "Year", 
+                              "Month_Code", 
+                              "Time_Period", 
+                              "All_Insurance_Index")
+
+head(insurance_data)
+```
+
+
+```{r}
+colnames(prop_insurance) <- c("Series_ID", 
+                  "Year", 
+                  "Month_Code", 
+                  "Time_Period", 
+                  "Price_Index")
+
+head(prop_insurance)
+```
+
+
