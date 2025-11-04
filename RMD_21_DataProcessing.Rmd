@@ -8,14 +8,27 @@ date: "2025-11-04"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Data Processing
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r}
+load("12_cleanedData.RData")
+head(events_data)
+head(overall_insurance)
+head(prop_insurance)
+```
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Our overall insurance data does not contain the months of March 2009 to May 2009, so we will remove them from the property insurance data so they can match 1 to 1
 
-```{r cars}
-summary(cars)
+```{r matchprop}
+prop_insurance <- prop_insurance[-c(1:3),]
+```
+
+We can now merge the 2 datasets, since they match 1 to 1 in terms of date. We can also get rid of useless columns
+
+```{r}
+
+all_insurance <- merge(prop_insurance, overall_insurance)
+
 ```
 
 ## Including Plots

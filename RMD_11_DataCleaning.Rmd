@@ -12,16 +12,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Data
-
--   Describe data source(s) and variables\
--   Cleaning steps and missing data handling\
--   Sample sizes and variable types\
--   Any transformations or merges
+## Data Processing
 
 ```{r reset env}
 rm(list = ls())
 ```
+
+First we will load the data:
 
 ```{r datasets}
 #events in US from 1980 - 2024
@@ -30,13 +27,15 @@ events_data <- na.omit(events_data)
 events_data <- events_data[-c(1, 2), ]
 
 #insurance data
-insurance_data <- read.csv("data/all_insurance_costs.csv")
-insurance_data <- na.omit(insurance_data)
+overall_insurance <- read.csv("data/all_insurance_costs.csv")
+overall_insurance <- na.omit(overall_insurance)
 
 #property insurance cost data
 prop_insurance <- read.csv("data/property_insurance_costs.csv")
 prop_insurance <- na.omit(prop_insurance)
 ```
+
+Next we will fix the data types of our data
 
 ```{r}
 colnames(events_data) <- c("Name_Date", #chr
@@ -69,13 +68,13 @@ dim(events_data)
 ```
 
 ```{r}
-colnames(insurance_data) <- c("PPI_Series_ID", 
+colnames(overall_insurance) <- c("PPI_Series_ID", 
                               "Year", 
                               "Month_Code", 
                               "Time_Period", 
                               "All_Insurance_Index")
 
-head(insurance_data)
+head(overall_insurance)
 ```
 
 ```{r}
@@ -86,10 +85,8 @@ colnames(prop_insurance) <- c("Series_ID",
                   "Property_Insurance_Index")
 
 head(prop_insurance)
+```
 
-#our property insurance contains data that the overall insurance does not have (2009 march-2009 may), so we will remove it to have thedata match 1-1
-
-prop_insurance <- prop_insurance[-c(1:3),]
-
+```{r savedata}
 save.image("12_cleanedData.RData")
 ```
