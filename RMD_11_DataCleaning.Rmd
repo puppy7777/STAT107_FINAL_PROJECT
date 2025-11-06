@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r reset env}
 rm(list = ls())
+source("00_requirements.R")
 ```
 
 First we will load the data:
