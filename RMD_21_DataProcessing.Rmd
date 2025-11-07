@@ -34,6 +34,9 @@ We can now merge the 2 datasets, since they match 1 to 1 in terms of date. We ca
 
 all_insurance <- merge(prop_insurance, overall_insurance)
 head(all_insurance)
+#we can now get rid of all and prop insurance
+rm(overall_insurance)
+rm(prop_insurance)
 ```
 
 ```{r columnremoval}
@@ -67,7 +70,7 @@ Next, we will get the number of months between the begin and end dates. Add one 
 events_data$Duration_Interval <- interval(events_data$Begin_Date, events_data$End_Date)
 
 events_data$Duration_Months <- as.period(events_data$Duration_Interval
-) %>% month() + 1
+) %/% months(1) + 1
 #events_data$Duration_Months
 
 events_data$Adjusted_CPM_Millions <- events_data$CPI_Adjusted_Cost_Millions / events_data$Duration_Months
@@ -88,16 +91,56 @@ head(all_insurance)
 
 ```
 
-Now, we can compare the calculated date to the interval in the events_data in order to see if that month incurred the cost of the event. This is very inefficient but its probably fine ahaha...
+Now, we can compare the calculated date to the interval in the events_data in order to see if that month incurred the cost of the event.
 
 ```{r}
-stuff <- c(1:nrow(all_insurance))
-stuff <- stuff * 0
-#there's almost certainly a better way to come up with a list of size n with all 0s but i couldnt figure it out and its not that big of a deal probably
- 
+all_insurance$Disaster_Cost <- 0
 
+A <- all_insurance[,c(6:7)] #get date
+B <- events_data[,c(3,4,10)] #get date interval and disaster cost
+#idk if this is neccessary but its the example on the rdocumentation website so ill go with what i know works https://www.rdocumentation.org/packages/data.table/versions/1.17.8/topics/foverlaps 
+A$start <- A$Calc_Date
+A$end <- A$Calc_Date
+B$start <- B$Begin_Date
+B$end <- B$End_Date
+B <- data.table(B)
+A <- data.table(A)
+setkey(B, start, end)
+overlaps <- foverlaps(A, B, type = "any", which = TRUE)
+overlaps <- data.frame(overlaps)
+for (i in 1:nrow(overlaps)) {
+  monthindex <- overlaps[i,1]
+  costindex <- overlaps[i,2]
+  all_insurance[monthindex,]$Disaster_Cost <- all_insurance[monthindex,]$Disaster_Cost + B[costindex,]$Adjusted_CPM_Millions
+}
+rm(A, B, i, costindex, monthindex)
+head(all_insurance)
+#i testesd this with an inefficeint brute force alg and it matches up, although leaves N/A where the cost is 0, thats fine
+```
+
+Now we can clean up (we're keeping overlaps in case its useful later)
+
+```{r}
+#we can use the month date instead with month(date) and year(date) 
+all_insurance$Year <- NULL
+all_insurance$Month <- NULL
+all_insurance$Month_Code <- NULL
+all_insurance <- all_insurance[, c("Calc_Date", "Disaster_Cost", "Property_Insurance_Index", "All_Insurance_Index")]
+colnames(all_insurance)[1] <- "Insurance_Month"
+
+#if the sum was 0 the cost is n/a, turn that back into 0
+#taken from tidyverse replace na reference
+all_insurance$Disaster_Cost <- replace_na(all_insurance$Disaster_Cost, 0)
+
+head(all_insurance)
+
+events_data$Duration_Interval <- NULL
+colnames(events_data)[3] <- "Begin_Month"
+colnames(events_data)[4] <- "End_Month"
+head(events_data)
 ```
 
 ```{r savedata}
 save.image("13_processedData.RData")
+
 ```

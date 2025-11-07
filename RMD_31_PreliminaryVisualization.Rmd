@@ -22,9 +22,6 @@ When you click the **Knit** button a document will be generated that includes bo
 ```{r}
 
 load("13_processedData.RData")
-head(events_data)
-head(insurance_data)
-head(prop_insurance)
 ```
 
 ## Plots
@@ -33,7 +30,7 @@ We can compare the property insurance prices to overall insurance prices to see 
 
 ```{r}
 
-plot(prop_insurance$Property_Insurance_Index ~ insurance_data$All_Insurance_Index, xlab = "Relative price for all insurance", ylab = "Relative price of property insurance")
+plot(all_insurance$Property_Insurance_Index ~ all_insurance$All_Insurance_Index, xlab = "Relative price for all insurance", ylab = "Relative price of property insurance")
 
 
 ```

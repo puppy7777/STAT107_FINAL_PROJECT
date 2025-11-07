@@ -76,6 +76,7 @@ colnames(overall_insurance) <- c("PPI_Series_ID",
                               "All_Insurance_Index")
 
 head(overall_insurance)
+
 ```
 
 ```{r}
