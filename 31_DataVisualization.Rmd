@@ -3,12 +3,15 @@ title: "31_DataVisualization"
 output:
   pdf_document: default
   html_document: default
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 ```
-
 
 ```{r}
 # Load your data files (you can comment out one if not needed)
@@ -28,7 +31,8 @@ all_insurance$Property_Insurance_Index  <- as.numeric(all_insurance$Property_Ins
 
 ## Visualization
 
-We can compare the property insurance prices to overall insurance prices to see if there’s a significant difference between the two.
+We can compare the property insurance prices to overall insurance prices
+to see if there’s a significant difference between the two.
 
 ```{r}
 plot(
@@ -42,7 +46,16 @@ plot(
 abline(lm(Property_Insurance_Index ~ All_Insurance_Index, data = all_insurance),
        col = "red", lwd = 2)
 ```
-This scatterplot compares overall insurance prices with property insurance prices. It helps us see whether property insurance behaves differently or just follows the same pattern as the broader market. The points form a clear upward trend, which means both usually rise and fall together. This is expected since damages recorded in our data result in more damage than just property. Because the two move so closely, we might later focus on the difference between them (the “spread”) to find subtle property-specific changes. 
+
+This scatterplot compares overall insurance prices with property
+insurance prices. It helps us see whether property insurance behaves
+differently or just follows the same pattern as the broader market. The
+points form a clear upward trend, which means both usually rise and fall
+together. This is expected since damages recorded in our data result in
+more damage than just property. Because the two move so closely, we
+might later focus on the difference between them (the “spread”) to find
+subtle property-specific changes.
+
 ```{r}
 tbl <- sort(table(events_data$Disaster_Type), decreasing = TRUE)
 par(mar = c(5,10,4,2) + 0.1)
@@ -50,7 +63,12 @@ barplot(tbl, horiz = TRUE, las = 1,
         main = "Frequency of Major Disasters by Type",
         xlab = "Count")
 ```
-The bar chart shows which natural disaster happens the most within out data set. Seeing that Severe Storms have been recorded the most by a large margin we can no longer generalize that the most total money spent on Stors means that they are the most expensive on a one to one ratio. However severe storms have the most overall impact on insuarance.
+
+The bar chart shows which natural disaster happens the most within out
+data set. Seeing that Severe Storms have been recorded the most by a
+large margin we can no longer generalize that the most total money spent
+on Stors means that they are the most expensive on a one to one ratio.
+However severe storms have the most overall impact on insuarance.
 
 ```{r}
 ## Time Series Analysis
@@ -95,7 +113,14 @@ legend("topleft",
        bty = "n")
 ```
 
-This line graph tracks how both the overall and property insurance indices change year by year. It’s useful for spotting trends and any time periods when property insurance rises faster than the general insurance market.The red (property) line pulls above the blue (overall) line in more recent years indicating that there may be more natural disaster and from what we learned in the last graph more severe storms more recently affecting property. 
+This line graph tracks how both the overall and property insurance
+indices change year by year. It’s useful for spotting trends and any
+time periods when property insurance rises faster than the general
+insurance market.The red (property) line pulls above the blue (overall)
+line in more recent years indicating that there may be more natural
+disaster and from what we learned in the last graph more severe storms
+more recently affecting property.
+
 ```{r}
 # 1) Histogram of monthly disaster costs
 # 2) Boxplot of event cost by type (log-scale)
@@ -129,15 +154,30 @@ barplot(top6,
 
 ```
 
-Monthly Disaster Costs (Histogram) #1
-This histogram shows how disaster costs are distributed each month. Most months have relatively small costs, but a few extreme months stand out with huge spikes. This is predicted since disasters happen at random times. This pattern tells us the data are very right-skewed, meaning a few big events dominate the rest. That’s why we use log scales or medians later instead of simple averages, since they can handle big outliers better.
+Monthly Disaster Costs (Histogram) #1 This histogram shows how disaster
+costs are distributed each month. Most months have relatively small
+costs, but a few extreme months stand out with huge spikes. This is
+predicted since disasters happen at random times. This pattern tells us
+the data are very right-skewed, meaning a few big events dominate the
+rest. That’s why we use log scales or medians later instead of simple
+averages, since they can handle big outliers better.
 
-Event Cost by Type (Boxplot) #2
-The boxplot compares how expensive different disaster types are. Each box shows the spread and median cost, using a log scale to handle large differences. You can quickly see which types—like hurricanes or severe storms—tend to cause higher damages. This helps decide which disaster categories might have the strongest connection to insurance pricing later on. In a practictical sense it tells us what properties not to invest in and insurances the same.
+Event Cost by Type (Boxplot) #2 The boxplot compares how expensive
+different disaster types are. Each box shows the spread and median cost,
+using a log scale to handle large differences. You can quickly see which
+types—like hurricanes or severe storms—tend to cause higher damages.
+This helps decide which disaster categories might have the strongest
+connection to insurance pricing later on. In a practictical sense it
+tells us what properties not to invest in and insurances the same.
 
-Top 6 Types by Total CPI-Adjusted Cost #3
-This bar chart focuses on the total combined cost of each disaster type. It highlights which ones have the biggest overall financial impact, not just which are common. A few types, such as tropical cyclones and severe storms, make up most of the total losses. These will probably play the biggest role when we study how disasters affect insurance rates since the total costs are so grand. In the grand scheme of disasters there are less overall cyclones so that is important to keep in mind.
-
+Top 6 Types by Total CPI-Adjusted Cost #3 This bar chart focuses on the
+total combined cost of each disaster type. It highlights which ones have
+the biggest overall financial impact, not just which are common. A few
+types, such as tropical cyclones and severe storms, make up most of the
+total losses. These will probably play the biggest role when we study
+how disasters affect insurance rates since the total costs are so grand.
+In the grand scheme of disasters there are less overall cyclones so that
+is important to keep in mind.
 
 ```{r}
 # Check whether prior disaster costs relate to current insurance index
@@ -175,12 +215,26 @@ for (nm in names(lags)) {
 
 ```
 
-Same-Month Disaster Cost vs Insurance Index #1
-This scatterplot looks at whether insurance prices go up immediately during months with expensive disasters. The points don’t show much of a pattern, which suggests that prices don’t react right away. It makes sense—insurers usually adjust rates after assessing the damage, not in the same month. Also those affected need time to get to safety. It would be unfair to increase insurance rates directly after a severe tragety.
+Same-Month Disaster Cost vs Insurance Index #1 This scatterplot looks at
+whether insurance prices go up immediately during months with expensive
+disasters. The points don’t show much of a pattern, which suggests that
+prices don’t react right away. It makes sense—insurers usually adjust
+rates after assessing the damage, not in the same month. Also those
+affected need time to get to safety. It would be unfair to increase
+insurance rates directly after a severe tragety.
 
-Lag 6 Months (Disaster Cost vs Insurance Index) #2
-Here we shift the disaster costs back by six months to see if there’s a delayed effect. The pattern starts to look a bit stronger in correlation, with higher disaster costs linked to slightly higher insurance prices half a year later. This hints that the market might take several months to reflect the impact of big losses. It will likely take even longer to recover from them.
+Lag 6 Months (Disaster Cost vs Insurance Index) #2 Here we shift the
+disaster costs back by six months to see if there’s a delayed effect.
+The pattern starts to look a bit stronger in correlation, with higher
+disaster costs linked to slightly higher insurance prices half a year
+later. This hints that the market might take several months to reflect
+the impact of big losses. It will likely take even longer to recover
+from them.
 
-Lag 12 Months (Disaster Cost vs Insurance Index) #3
-Finally, we check a one-year lag. The relationship either weakens or stays similar to the six-month one. This helps us understand how long it takes for disasters to influence pricing trends. Whether the response fades after a year or continues. We’ll use this to choose the right lag period in our later models. Looking at this graph disasters seem to have a more short term impact on insurance prices overall.
-
+Lag 12 Months (Disaster Cost vs Insurance Index) #3 Finally, we check a
+one-year lag. The relationship either weakens or stays similar to the
+six-month one. This helps us understand how long it takes for disasters
+to influence pricing trends. Whether the response fades after a year or
+continues. We’ll use this to choose the right lag period in our later
+models. Looking at this graph disasters seem to have a more short term
+impact on insurance prices overall.
