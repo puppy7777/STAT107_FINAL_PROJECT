@@ -1,0 +1,33 @@
+---
+title: "STATS_107_HalfwayProj 2025-11-07"
+author: "Jessica Xia"
+date: "2025-11-7"
+output:
+  html_document: default
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+---
+
+Title: The Financial Correlations of Major Natural Disasters on Insurance Prices
+
+Abstract: 
+
+This project's main question aims to see if there is a relationship between large-scale natural disasters and the cost of insurance, and whether specific insurance, like property insurance, is more likely to be affected.
+
+By combining datasets on natural disaster costs and insurance rate indices, we aimed to identify a correlation between the financial impact of disasters and changes in insurance pricing. To standardize comparison, each disaster’s total cost was divided by its duration in months to calculate a “cost-per-month,” which was then applied across all datasets to ensure consistency.
+
+The preliminary visualization of property insurance prices compared to overall insurance prices showed a strong linear relationship, which suggests to us…
+
+Introduction: 
+
+Our analysis aims to determine whether large natural disasters affect insurance prices, and whether certain types, like property insurance, are more strongly affected. The main question is whether higher disaster costs correspond to increases in overall or specific insurance rates. Our project explores correlations between disaster expenses and insurance indices to identify potential market responses. The results of our analysis can help policymakers, insurance companies, and consumers better understand how natural disasters impact financial risk and affordability.
+
+
+
