@@ -16,7 +16,6 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```{r}
 # Load your data files (you can comment out one if not needed)
 load("22_processedData.RData")
-load("12_cleanedData.RData")
 
 # Convert key columns to correct types
 
