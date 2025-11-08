@@ -20,4 +20,4 @@ We searched online for data relating to insurance prices and the costs of natura
 
 # Analysis
 
-With our data, we looked at how the financial costs of major natural disasters connect to changes in insurance prices over time. Beyond what we already analyzed earlier, we want to see if certain areas are more frequently affected by disasters and if they experience sharper increases in insurance prices. We also want to see if factors such as inflation or GDP growth can determine whether changes in insurance prices are driven primarily by disasters or by general market conditions.
+With our data, we looked at how the financial costs of major natural disasters connect to changes in insurance prices over time. Beyond what we already analyzed earlier, we want to see if certain areas are more frequently affected by disasters and if they experience sharper increases in insurance prices. In order to do so, we will need to find additional datasets to do this analysis. We also want to see if factors such as inflation or GDP growth can determine whether changes in insurance prices are driven primarily by disasters or by general market conditions.
