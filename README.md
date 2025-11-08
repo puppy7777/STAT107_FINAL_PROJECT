@@ -1,6 +1,6 @@
-# STAT107_FINAL_PROJECT
+# Team 6: STAT107_FINAL_PROJECT
 
-Wesley He, Jasmine Patel, Jessica Xia
+Team 6: Wesley He, Jasmine Patel, Jessica Xia
 
 ## Contributions:
 
