@@ -1,14 +1,14 @@
-Title: 
+# Title: 
 The Financial Correlations of Major Natural Disasters on Insurance Prices
 
-Abstract:
+# Abstract:
 This project's main question aims to see if there is a relationship between large-scale natural disasters and the cost of insurance, and whether specific insurance, like property insurance, is more likely to be affected.
 
 By combining datasets on natural disaster costs and insurance rate indices, we examined potential correlations between the financial impact of disasters and changes in insurance pricing. To standardize comparison, each disaster’s total cost was divided by its duration in months to calculate a “cost-per-month,” which was then applied across all datasets to ensure consistency.
 
 The preliminary visualizations of property insurance prices compared to overall insurance prices reveal a clear relationship between major disaster events and property insurance costs. Out of all the disaster types, severe storms are the most frequently occurring major disaster type; however, tropical cyclones drive the highest financial costs. When comparing insurance, property insurance indices increase above all others after 2020. Overall, the analysis suggests a positive correlation between disaster costs and the insurance index, with noticeable increases in insurance prices typically appearing about 6 to 12 months after major catastrophic events.
 
-Introduction:
+# Introduction
 Our analysis aims to determine whether large natural disasters affect insurance prices and whether certain types, like property insurance, are more strongly affected. The main question is whether higher disaster costs correspond to increases in overall or specific insurance rates. Our project examines the correlations between disaster expenses and insurance indices to determine potential market responses and can offer valuable insight for policymakers, insurance companies, and consumers seeking to understand how natural disasters shape financial risk and insurance affordability.
 
 
