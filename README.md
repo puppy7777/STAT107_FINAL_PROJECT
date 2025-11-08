@@ -1,5 +1,7 @@
 # STAT107_FINAL_PROJECT
 
+Wesley He, Jasmine Patel, Jessica Xia
+
 ## Files:
 
 data/: file containing our data - realtive insurance prices for insurance as a whole as well as property insurance, as well as a dataset of all billion dollar cost or higher natural disasters since 1980
