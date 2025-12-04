@@ -275,3 +275,31 @@ summary(log_disaster_all)
 insurance_time <- lm(Property_Insurance_Index ~ Insurance_Month, data = all_insurance)
 summary(insurance_time)
 ```
+
+```{r}
+delayed_damage <- data.frame(
+  Property_Insurance = all_insurance$Property_Insurance_Index
+)
+
+diff_one_month <- c()
+for (num in 1:(nrow(delayed_damage))) {
+  diff_one_month <- append(diff_one_month, (delayed_damage$Property_Insurance[num+1] - delayed_damage$Property_Insurance[num]))
+}
+
+delayed_damage$diff_1_month <- diff_one_month
+
+diff_12_month <- c()
+
+for (num in 1:(nrow(delayed_damage))) {
+  diff_12_month <- append(diff_12_month, (delayed_damage$Property_Insurance[num+12] - delayed_damage$Property_Insurance[num]))
+}
+
+delayed_damage$diff_1_year <- diff_12_month
+
+
+```
+
+```{r}
+year_delay <- lm(Property_Insurance ~ diff_1_year, data = delayed_damage)
+summary(year_delay)
+```
