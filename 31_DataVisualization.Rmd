@@ -237,3 +237,41 @@ to influence pricing trends. Whether the response fades after a year or
 continues. We’ll use this to choose the right lag period in our later
 models. Looking at this graph disasters seem to have a more short term
 impact on insurance prices overall.
+
+```{r}
+plot(Disaster_Cost ~ Insurance_Month, data = all_insurance, pch = 20, ylab = "Monthly cost of billion-dollar natural disasters", xlab = "Time")
+
+plot(Disaster_Cost ~ Insurance_Month, data = all_insurance, pch = 20, log = "y", ylab = "Monthly cost of billion-dollar natural disasters", xlab = "Time")
+```
+
+```{r}
+disaster_time <- lm(Disaster_Cost ~ Insurance_Month, data = all_insurance)
+summary(disaster_time)
+
+all_insurance$ModifiedDisaster <- all_insurance$Disaster_Cost + 1
+log_disaster_time <- lm(log(ModifiedDisaster) ~ Insurance_Month, data = all_insurance)
+summary(log_disaster_time)
+
+
+```
+
+```{r}
+disaster_insurance <- lm(Disaster_Cost ~ Property_Insurance_Index, data = all_insurance)
+summary(disaster_insurance)
+
+log_disaster_insurance <- lm(log(ModifiedDisaster) ~ Property_Insurance_Index, data = all_insurance)
+summary(log_disaster_insurance)
+```
+
+```{r}
+disaster_all <- lm(Disaster_Cost ~ All_Insurance_Index, data = all_insurance)
+summary(disaster_all)
+
+log_disaster_all <- lm(log(ModifiedDisaster) ~ All_Insurance_Index, data = all_insurance)
+summary(log_disaster_all)
+```
+
+```{r}
+insurance_time <- lm(Property_Insurance_Index ~ Insurance_Month, data = all_insurance)
+summary(insurance_time)
+```
