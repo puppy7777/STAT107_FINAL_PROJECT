@@ -10,11 +10,11 @@ The Financial Correlations of Major Natural Disasters on Insurance Prices
 
 # Abstract:
 
-This project's main question examines whether there is a relationship between large-scale natural disasters and insurance costs, and whether specific types of insurance, such as property insurance, are more likely to be affected.
+Insurance is intended to be a protective measure against disasters or unforeseen events. However, large-scale natural disasters can mean insurance companies have to pay out huge sums to affected people, which may lead them to raise prices to recoup their costs. We analyze whether there is any relationship between the large-scale natural disasters (1 billion dollars or more of damage) and insurance prices, specifically property insurance prices, as well as overall insurance prices.
 
 By combining datasets on natural disaster costs and insurance rate indices, we examined potential correlations between the financial impact of disasters and changes in insurance pricing. To standardize comparison, each disaster’s total cost was divided by its duration in months to calculate a “cost-per-month,” which was then applied across all datasets to ensure consistency.
 
-Our data show that, compared to overall insurance prices, property insurance prices reveal a clear relationship between major disaster events and property insurance costs. Of all disaster types, severe storms are the most frequent primary type; however, tropical cyclones incur the highest financial costs. When comparing insurance, property insurance indices have increased the most since 2020. Overall, the analysis suggests a positive correlation between disaster costs and the insurance index, with noticeable increases in insurance prices typically appearing about 6 to 12 months after major catastrophic events.
+Our analysis, however, indicates no strong linear correlation between the relative price of insurance and the relative cost of natural disasters, even after accounting for potential delayed effects. Severe storms remain the most frequent disaster type, and tropical cyclones still produce the highest overall costs, but these trends do not translate into proportional shifts in insurance prices. Instead, the data shows that both property insurance and overall insurance indices exhibit a strong linear upward trend over time, suggesting that insurance prices continue to rise regardless of the frequency or scale of major natural disasters.
 
 # Introduction
 
@@ -22,11 +22,15 @@ Our analysis aims to determine whether large natural disasters affect insurance 
 
 # Data
 
-We searched online for data relating to insurance prices and the costs of natural disasters. We ended up sources our data on insurance prices from the Bureau of Labor Statistics, which keeps of the relative track of the price index of insurance as a whole, as well as property insurance. Unfortunately, no other information is provided on the data, and only the relative cost is given. Their downloadable data set contains data from 2009 to 2024. Each data point represents a given month, with the relative price adjusted for inflation, for a total of 195 observations. The data on natural disasters came from the National Oceanic and Atmospheric Administration, which has a publicly available data set of billion-dollar natural disasters (adjusted for inflation) as far back as 1980. In total, there were 403 observations. Each one included the event, the type of event, start date of the disaster, end date, as well as inflation adjusted and non inflation adjusted costs. It also had the number of deaths for that disasters. None of the data contained any missing values, and cleaning it was just a matter of removing the headers in the csv files.
+We searched online for data relating to insurance prices and the costs of natural disasters. We ended up sourcing our data on insurance prices from the Bureau of Labor Statistics, which keeps of the relative track of the price index of insurance as a whole, as well as property insurance; both were adjusted for inflation. Unfortunately, no other information is provided, and only the relative cost to itself is given. Their downloadable data set contains data from 2009 to 2024.
 
-# Data Cleaning
+The data on natural disasters came from the National Oceanic and Atmospheric Administration, which has a publicly available data set of billion-dollar natural disasters (adjusted for inflation) as far back as 1980. Each one included the event, the type of event, start date of the disaster, end date, as well as inflation adjusted and non inflation adjusted costs. It also had the number of deaths for that disaster. The natural disasters were divided into 6 types: Winter Storms, Wildfires, Tropical Cyclones, Severe Storms, Freezes, Floods, and Droughts
 
+# Data Cleaning:
 
+Neither data set had any missing values, so cleaning it was just a matter of removing sone headers in the csv files that were describing how the data was formatted. The insurance data set contained data points for the relative cost of insurance each month for a total of 195 observations, and the natural disaster data contained 403 observations.
+
+We assigned a cost to each month by dividing each natural disasters' cost by the number of months it spanned, before adding that result to the relevant months. Doing this with each natural disaster in the data set, we were able to assign a "monthly cost" of natural disasters to each month in our insurance data set.
 
 # Visualizations
 
@@ -36,9 +40,13 @@ We searched online for data relating to insurance prices and the costs of natura
 
 ![Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
 
+This graph displays the cost of large natural disasters for each given month from 2009 and 2024, in millions. Overall, the cost seems to be relatively low with a few huge outlines Most of these come from hurricanes, as they are the most destructive and often don't span multiple months, and as such their cost is concentrated into a single month for our data. For example the two highest points in 2017 come mainly from Hurricane Harvey (\$160 billion in damage) and Hurricane Maria (\$115 billion in damage), in August and September respectively. However, because of the height of these two points, much of the data is hard to tell apart. As such, below is the same data, except on a log scale.
+
 ![Log of the disaster cost per month over time](./graphs/log_disaster_cost_vs_time.png)
 
-The visualizations show that property insurance generally follows overall insurance trends, though it has risen slightly faster in recent years, likely due to severe storms and other disasters. Insurance prices do not react immediately to disaster costs, but tend to increase about six months after significant events, increasing more after twelve months. Extreme disasters, particularly tropical cyclones, drive the most considerable financial impacts. 
+Some months had no large natural disasters during their time frame, and as such had 0 as their monthly cost data point. In order to generate this graph, we added 1 to each of the costs so they would be set to 0. However, this should not affect the graph much.
+
+We can see that most natural disasters cause between 500 million to 5 billion dollars in destruction and other costs. If you squint, you may be able to see a positive correlation between time and the cost of diasters, although this correlation seems weak at best.
 
 # Analysis
 
