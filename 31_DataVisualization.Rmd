@@ -278,7 +278,8 @@ summary(insurance_time)
 
 ```{r}
 delayed_damage <- data.frame(
-  Property_Insurance = all_insurance$Property_Insurance_Index
+  Property_Insurance = all_insurance$Property_Insurance_Index,
+  Monthly_Damage = all_insurance$Disaster_Cost
 )
 
 diff_one_month <- c()
@@ -300,6 +301,8 @@ delayed_damage$diff_1_year <- diff_12_month
 ```
 
 ```{r}
-year_delay <- lm(Property_Insurance ~ diff_1_year, data = delayed_damage)
+#see if the price change from 1 year ago to now is correlated with the damage from a month
+plot(diff_1_year ~ Monthly_Damage, data = delayed_damage)
+year_delay <- lm(diff_1_year~ Monthly_Damage, data = delayed_damage)
 summary(year_delay)
 ```
