@@ -256,18 +256,18 @@ summary(log_disaster_time)
 ```
 
 ```{r}
-disaster_insurance <- lm(Disaster_Cost ~ Property_Insurance_Index, data = all_insurance)
+disaster_insurance <- lm(Property_Insurance_Index  ~ Disaster_Cost, data = all_insurance)
 summary(disaster_insurance)
 
-log_disaster_insurance <- lm(log(ModifiedDisaster) ~ Property_Insurance_Index, data = all_insurance)
+log_disaster_insurance <- lm(Property_Insurance_Index ~ log(ModifiedDisaster) , data = all_insurance)
 summary(log_disaster_insurance)
 ```
 
 ```{r}
-disaster_all <- lm(Disaster_Cost ~ All_Insurance_Index, data = all_insurance)
+disaster_all <- lm(All_Insurance_Index ~ Disaster_Cost, data = all_insurance)
 summary(disaster_all)
 
-log_disaster_all <- lm(log(ModifiedDisaster) ~ All_Insurance_Index, data = all_insurance)
+log_disaster_all <- lm(All_Insurance_Index ~ log(ModifiedDisaster), data = all_insurance)
 summary(log_disaster_all)
 ```
 
@@ -296,7 +296,7 @@ for (num in 1:(nrow(delayed_damage))) {
 }
 
 delayed_damage$diff_1_year <- diff_12_month
-
+delayed_damage$ModifiedDamage <- all_insurance$ModifiedDisaster
 
 ```
 

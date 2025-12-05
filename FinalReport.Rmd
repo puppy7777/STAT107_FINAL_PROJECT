@@ -52,4 +52,12 @@ We can see that most natural disasters cause between 500 million to 5 billion do
 
 With our data, we looked at how the financial costs of major natural disasters connect to changes in insurance prices over time. Beyond what we already analyzed earlier, we want to see if certain areas are more frequently affected by disasters and if they experience sharper increases in insurance prices. In order to do so, we will need to find additional datasets to do this analysis. We also want to see if factors such as inflation or GDP growth can determine whether changes in insurance prices are driven primarily by disasters or by general market conditions.
 
+| Predictor Variable | Explanatory Variable | Coefficient | P-value |
+|----|----|----|----|
+| Monthly Natural Disaster Damage | Time | 0.0000376 | 0.756 |
+| Relative Property Insurance Price | Monthly Natural Disaster Damage | 0.0000431 | 0.245 |
+| Relative Property Insurance Price | Log of Monthly Natural Disaster Damage | -0.480 | 0.148 |
+
+![Relative insurance prices given a year of delay](./graphs/damage_vs_price_diff_1_year.png)
+
 Github link (code, visualizations, etc.): <https://github.com/puppy7777/STAT107_FINAL_PROJECT>
