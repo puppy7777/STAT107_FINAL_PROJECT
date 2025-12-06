@@ -28,7 +28,7 @@ The data on natural disasters came from the National Oceanic and Atmospheric Adm
 
 # Data Cleaning:
 
-Neither data set had any missing values, so cleaning it was just a matter of removing sone headers in the csv files that were describing how the data was formatted. The insurance data set contained data points for the relative cost of insurance each month for a total of 195 observations, and the natural disaster data contained 403 observations.
+Neither data set had any missing values, so cleaning it was just a matter of removing some headers in the csv files that were describing how the data was formatted. The insurance data set contained data points for the relative cost of insurance each month for a total of 195 observations, and the natural disaster data contained 403 observations.
 
 We assigned a cost to each month by dividing each natural disasters' cost by the number of months it spanned, before adding that result to the relevant months. Doing this with each natural disaster in the data set, we were able to assign a "monthly cost" of natural disasters to each month in our insurance data set.
 
@@ -40,7 +40,7 @@ We can see that insurance prices seem to rise steadily over time. As our data is
 
 ![Disasters and their monthly cost](./graphs/disaster_cost_and_by_type.png)
 
-This figure has two parts: the left side shows the frequency of a disaster related to it's cost and the right side shows each disaster type by its cost. The purpose of this figure is to help viewers understand which events might be expected to have the greatest impact on insurance pricing. The results of both suggest that most months have very low or moderate damage, while a few months show extremely high spikes caused by major storms. Because these spikes are so large, they visually dominate the plot. The severely right-skewed distribution shows that disaster severity varies widely from month to month. This visual explains why disaster costs may not correlate well with smooth, steadily rising insurance prices.
+This figure has two parts: the left side shows the frequency of a disaster related to its cost and the right side shows each disaster type by its cost. The purpose of this figure is to help viewers understand which events might be expected to have the greatest impact on insurance pricing. The results of both suggest that most months have very low or moderate damage, while a few months show extremely high spikes caused by major storms. Because these spikes are so large, they visually dominate the plot. The severely right-skewed distribution shows that disaster severity varies widely from month to month. This visual explains why disaster costs may not correlate well with smooth, steadily rising insurance prices.
 
 ![Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
 
@@ -54,7 +54,7 @@ Using a log scale helps spread out the smaller and mid-sized disaster costs so t
 
 ![Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
 
-All three scatter plots (0,6, 12 month delay) look similar to each other, with the red best fit line steepest for the 6 month delay. This means that if insurance prices increase due to large-scale natural disasters, it is most likely that it would be after 6 months. However, the correlation on these plots is all poor, as the vast majority of points hover on the left side and seem randomly distributed up and down, while there are very few outlier points on the right which seem to be the cause of the best fit line
+All three scatter plots (0, 6, 12 month delay) look similar to each other, with the red best fit line steepest for the 6 month delay. This means that if insurance prices increase due to large-scale natural disasters, it is most likely to occur after 6 months. However, the correlation on these plots is all poor, as the vast majority of points hover on the left side and seem randomly distributed up and down, while there are very few outlier points on the right which seem to be the cause of the best fit line.
 
 # Analysis
 
