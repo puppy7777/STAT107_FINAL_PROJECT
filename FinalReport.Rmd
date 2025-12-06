@@ -6,6 +6,8 @@ output:
 
 # The Financial Correlations of Major Natural Disasters on Insurance Prices
 
+Wesley He, Jasmine Patel, Jessica Xia
+
 # Abstract:
 
 Insurance is intended to be a protective measure against disasters or unforeseen events. However, large-scale natural disasters can mean insurance companies have to pay out huge sums to affected people, which may lead them to raise prices to recoup their costs. We analyze whether there is any relationship between the large-scale natural disasters (1 billion dollars or more of damage) and insurance prices, specifically property insurance prices, as well as overall insurance prices.
@@ -95,4 +97,3 @@ Overall, we were unable to find any linear correlation between the cost/destruct
 Additionally, we were unable to find a linear correlation between the destruction caused by natural disasters and time, implying that, thankfully, the damage caused by large-scale natural disasters has not been increasing.
 
 However, we did find a very strong linear correlation between the price of insurance and time. This implication, along with the very small p-value and high R squared, implies that insurance companies regularly hike the price of property insurance, even as the damage caused by large-scale natural disasters does not change.
-
