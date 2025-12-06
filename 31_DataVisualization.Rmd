@@ -308,9 +308,12 @@ delayed_damage$ModifiedDamage <- all_insurance$ModifiedDisaster
 
 ```{r}
 #see if the price change from 1 year ago to now is correlated with the damage from a month
-plot(diff_1_year ~ Monthly_Damage, data = delayed_damage, pch = 20)
-month_delay <- lm(diff_one_month ~ Monthly_Damage, data =delayed_damage)
+#plot(diff_1_year ~ Monthly_Damage, data = delayed_damage, pch = 20)
+month_delay <- lm(diff_1_month ~ Monthly_Damage, data =delayed_damage)
 summary(month_delay)
+
+six_month_delay <- lm(diff_6_month ~ Monthly_Damage, data =delayed_damage)
+summary(six_month_delay)
 
 year_delay <- lm(diff_1_year~ Monthly_Damage, data = delayed_damage)
 summary(year_delay)
