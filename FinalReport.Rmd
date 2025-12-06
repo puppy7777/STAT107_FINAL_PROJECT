@@ -22,7 +22,7 @@ Our analysis aims to determine whether large natural disasters affect insurance 
 
 # Data
 
-We searched online for data relating to insurance prices and the costs of natural disasters. We ended up sourcing our data on insurance prices from the Bureau of Labor Statistics, which keeps of the relative track of the price index of insurance as a whole, as well as property insurance; both were adjusted for inflation. Unfortunately, no other information is provided, and only the relative cost to itself is given. Their downloadable data set contains data from 2009 to 2024.
+We searched online for data relating to insurance prices and the costs of natural disasters. We ended up sourcing our data on insurance prices from the Bureau of Labor Statistics, which keeps track of the relative price index of insurance as a whole, as well as property insurance; both were adjusted for inflation. Unfortunately, no other information is provided, and only the relative cost to itself is given. Their downloadable data set contains data from 2009 to 2024.
 
 The data on natural disasters came from the National Oceanic and Atmospheric Administration, which has a publicly available data set of billion-dollar natural disasters (adjusted for inflation) as far back as 1980. Each one included the event, the type of event, start date of the disaster, end date, as well as inflation adjusted and non inflation adjusted costs. It also had the number of deaths for that disaster. The natural disasters were divided into 6 types: Winter Storms, Wildfires, Tropical Cyclones, Severe Storms, Freezes, Floods, and Droughts
 
@@ -40,7 +40,7 @@ We can see that insurance prices seem to rise steadily over time. As our data is
 
 ![Disasters and their monthly cost](./graphs/disaster_cost_and_by_type.png)
 
-This figure has two parts, the left side shows us the frequency of a disaster related to it's cost and the right side Each recorded type of disaster by it's cost. This figure is meant to help viewers understand which events might be expected to have the greatest impact on insurance pricing. The results of both suggest that most months have very low or moderate damage, while a few months show extremely high spikes caused by major storms. Because these spikes are so large, they visually dominate the plot. The severely skewed right distribution shows that disaster severity varies widely from month to month. This visuale xplains why disaster costs may not correlate well with smooth, steadily rising insurance prices.
+This figure has two parts, the left side shows us the frequency of a disaster related to it's cost and the right side Each recorded type of disaster by it's cost. This figure is meant to help viewers understand which events might be expected to have the greatest impact on insurance pricing. The results of both suggest that most months have very low or moderate damage, while a few months show extremely high spikes caused by major storms. Because these spikes are so large, they visually dominate the plot. The severely skewed right distribution shows that disaster severity varies widely from month to month. This visual explains why disaster costs may not correlate well with smooth, steadily rising insurance prices.
 
 ![Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
 
@@ -74,7 +74,7 @@ With a p-value of 0.756, we can be confident that the scale of damage from large
 | Relative Property Insurance Price | Monthly Natural Disaster Damage | 0.0000431 | 0.245 |
 | Relative Property Insurance Price | Log of Monthly Natural Disaster Damage | -0.480 | 0.148 |
 
-Across all both regression models, the p-values were above 0.05, meaning there is no statistically significant linear relationship between natural disaster costs and insurance prices within the same month. However, this could be because the insurance prices may take time to respond to disasters. To confirm this hypothesis, we examine whether stronger associations emerge when introducing 0-month, 6-month, and 12-month lags between disaster costs and insurance price changes.
+Across both regression models, the p-values were above 0.05, meaning there is no statistically significant linear relationship between natural disaster costs and insurance prices within the same month. However, this could be because the insurance prices may take time to respond to disasters. To confirm this hypothesis, we examine whether stronger associations emerge when introducing 0-month, 6-month, and 12-month lags between disaster costs and insurance price changes.
 
 To test whether there was simply a delay when raising insurance prices when natural disasters caused damage, we took the relative price of insurance after the set delay, divided by the relative price of insurance during which the damage was caused. For example, if Jan. 2012's relative insurance price was 110, and Jan. 2013's relative insurance price was 121, then the relative price would be 121/110 = 1.1 for Jan 2012.
 
