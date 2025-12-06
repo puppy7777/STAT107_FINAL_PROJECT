@@ -16,11 +16,11 @@ By combining datasets on natural disaster costs and insurance rate indices, we e
 
 Our analysis, however, indicates no strong linear correlation between the relative price of insurance and the relative cost of natural disasters, even after accounting for potential delayed effects. Severe storms remain the most frequent disaster type, and tropical cyclones still produce the highest overall costs, but these trends do not translate into proportional shifts in insurance prices. Instead, the data shows that both property insurance and overall insurance indices exhibit a strong linear upward trend over time, suggesting that insurance prices continue to rise regardless of the frequency or scale of major natural disasters.
 
-# Introduction
+# Introduction:
 
 Our analysis aims to determine whether large natural disasters affect insurance prices and whether certain types, like property insurance, are more strongly affected. The main question is whether higher disaster costs correspond to increases in overall insurance rates or in specific insurance rates. Our project examines the correlations between disaster expenses and insurance indices to determine potential market responses. It can offer valuable insight for policymakers, insurance companies, and consumers seeking to understand how natural disasters shape financial risk and insurance affordability.
 
-# Data
+# Data:
 
 We searched online for data relating to insurance prices and the costs of natural disasters. We ended up sourcing our data on insurance prices from the Bureau of Labor Statistics, which tracks the relative price index for insurance as a whole and for property insurance; both were adjusted for inflation. Unfortunately, no other information is provided, and only the relative cost to itself is given. Their downloadable dataset covers the period from 2009 to 2024.
 
@@ -32,7 +32,7 @@ Neither data set had any missing values, so cleaning it was just a matter of rem
 
 We assigned a cost to each month by dividing each natural disasters' cost by the number of months it spanned, before adding that result to the relevant months. Doing this with each natural disaster in the data set, we were able to assign a "monthly cost" of natural disasters to each month in our insurance data set.
 
-# Visualizations
+# Visualizations:
 
 ![Relative insurance prices over time](./graphs/insurance_prices_vs_time.png)
 
@@ -56,7 +56,7 @@ Using a log scale helps spread out the smaller and mid-sized disaster costs so t
 
 All three scatter plots (0, 6, 12 month delay) look similar to each other, with the red best fit line steepest for the 6 month delay. This means that if insurance prices increase due to large-scale natural disasters, it is most likely to occur after 6 months. However, the correlation on these plots is all poor, as the vast majority of points hover on the left side and seem randomly distributed up and down, while there are very few outlier points on the right which seem to be the cause of the best fit line.
 
-# Analysis
+# Analysis:
 
 First, we are interested in whether our two notable variables—insurance prices and damages caused by natural disasters—increase over time. To do so, we conducted a linear regression with time (the given month/year) as the explanatory variable and the total damages from natural disasters and relative property insurance prices as the predictor variables.
 
@@ -90,7 +90,7 @@ Overall, the weak linear trends observed at all lag lengths help explain why the
 
 We also ran similar tests comparing overall insurance prices to property insurance prices, but the results were nearly identical, with no correlation observed.
 
-# Conclusion
+# Conclusion:
 
 Overall, we were unable to find any linear correlation between the cost/destruction of large natural disasters and the price of property insurance in the US. This does make sense in a way, as insurance companies likely already take these risks into account when calculating insurance prices, and don't have to hike prices as they expect some natural disasters to occur.
 
