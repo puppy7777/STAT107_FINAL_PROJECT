@@ -48,20 +48,6 @@ Some months had no large natural disasters during their time frame, and as such 
 
 We can see that most natural disasters cause between 500 million to 5 billion dollars in destruction and other costs. If you squint, you may be able to see a positive correlation between time and the cost of diasters, although this correlation seems weak at best.
 
-# Analysis
-
-With our data, we looked at how the financial costs of major natural disasters connect to changes in insurance prices over time. Beyond what we already analyzed earlier, we want to see if certain areas are more frequently affected by disasters and if they experience sharper increases in insurance prices. In order to do so, we will need to find additional datasets to do this analysis. We also want to see if factors such as inflation or GDP growth can determine whether changes in insurance prices are driven primarily by disasters or by general market conditions.
-
-| Predictor Variable | Explanatory Variable | Coefficient | P-value |
-|----|----|----|----|
-| Monthly Natural Disaster Damage | Time | 0.0000376 | 0.756 |
-| Relative Property Insurance Price | Monthly Natural Disaster Damage | 0.0000431 | 0.245 |
-| Relative Property Insurance Price | Log of Monthly Natural Disaster Damage | -0.480 | 0.148 |
-
-![Relative insurance prices given a year of delay](./graphs/damage_vs_price_diff_1_year.png)
-
-Across all three regression models, all of the p-values were above 0.05, meaning there is no statistically significant linear relationship between natural disaster costs and insurance prices within the same month However, this due because the insurance prices may take time to respond to disasters. To confirm this hypothesis, we examine whether stronger associations emerge when introducing 0-month, 6-month, and 12-month lags between disaster costs and insurance price changes.
-
 ![Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
 
 By examining the relationship between disaster costs and the All Insurance Index using 0-, 6-, and 12-month lags, we see that:
@@ -72,6 +58,34 @@ Lag 6 Months: Shifting disaster costs back by 6 months to assess delayed effects
 
 Lag 12 Months/one-year lag: The relationship appears to have weakened or remains similar to the six-month one. The slope and scatter plots look nearly identical. This suggests that most pricing adjustments happen within 6 months and persist, but don’t intensify further by 12 months.
 
-Overall, the weak linear trends observed at all lag lengths help explain why the regression p-values were not statistically significant. There may be a slight delayed effect of natural disasters on insurance pricing, and the data does not show a strong or consistent linear relationship.
+# Analysis
 
-Github link (code, visualizations, etc.): <https://github.com/puppy7777/STAT107_FINAL_PROJECT>
+First, we are interested in whether our two ntoable variables--insurance price and damages caused by natural disasters, increase with time. To do so, we conducted a linear regression with time (the given month/year) as our explanatory variable and the months' total damages from natural disasters and relative proeprty insurance prices as our predictor variables.
+
+| Predictor Variable | Explanatory Variable | Coefficient | P-value | R-sq |
+|---------------|---------------|---------------|---------------|---------------|
+| Monthly Natural Disaster Damage | Time | 0.0000376 | 0.756 | 0.011 |
+| Relative Property Insurance Price | Time | 0.00737 | 2e-16 | 0.907 |
+
+These results indicate the the price of property insurance is linearly correlated with time. Specifically, every month, the price of property insurance is predicted to increase by about 0.74% of the price it was in January of 2009, or about 8.9% of that per year. Unfortunately, since our data only contains relative prices, we don't know the exact amount.
+
+With a p-value of 0.756, we can be confident that the scale of damage from large natural disasters has not increased with time. Seeing how insurance prices seem to rise with time, this means that it is doubtful that insurance prices and natural disaster damage are linearly correlated, but we will run the tests nonetheless.
+
+| Predictor Variable | Explanatory Variable | Coefficient | P-value |
+|------------------|------------------|------------------|------------------|
+| Relative Property Insurance Price | Monthly Natural Disaster Damage | 0.0000431 | 0.245 |
+| Relative Property Insurance Price | Log of Monthly Natural Disaster Damage | -0.480 | 0.148 |
+
+Across all both regression models, the p-values were above 0.05, meaning there is no statistically significant linear relationship between natural disaster costs and insurance prices within the same month. However, this could be because the insurance prices may take time to respond to disasters. To confirm this hypothesis, we examine whether stronger associations emerge when introducing 0-month, 6-month, and 12-month lags between disaster costs and insurance price changes.
+
+To test whether there was simply a delay when raising insurance prices when natural disasters caused damage, we took the relative price of insurance after the set delay, divided by the relative price of insurance during which the damage was caused. For example, if Jan. 2012's relative insurance price was 110, and Jan. 2013's relative insurance price was 121, then the relative price would be 121/110 = 1.1 for Jan 2012.
+
+| Predictor Variable | Explanatory Variable | Coefficient | P-value |
+|------------------|------------------|------------------|------------------|
+| Relative Property Insurance Price After 1 Month | Natural Disaster Damage | -7.656e-9 | 0.507 |
+| Relative Property Insurance Price After 6 Months | Natural Disaster Damage | 4.478e-9 | 0.912 |
+| Relative Property Insurance Price After 12 Months | Natural Disaster Damage | 3.401e-8 | 0.669 |
+
+The minuscule coefficients, high p-values, and R squared values so low that they weren't worth including indicate that there is no relation at all between property insurance prices and the scale/cost of natural disasters, even when accounting for a delay from 1-12 months for insurance prices to rise.
+
+Overall, the weak linear trends observed at all lag lengths help explain why the regression p-values were not statistically significant. Even if there is a slight delayed effect of natural disasters on insurance pricing, the data does not show a strong nor consistent linear relationship.
