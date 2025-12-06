@@ -32,25 +32,25 @@ We assigned a cost to each month by dividing each natural disasters' cost by the
 
 # Visualizations
 
-![Figure 1: Relative insurance prices over time](./graphs/insurance_prices_vs_time.png)
+![Relative insurance prices over time](./graphs/insurance_prices_vs_time.png)
 
 We can see that insurance prices seem to rise steadily over time. As our data is already corrected for inflation, this means that the rate that insurance costs rises outpaces inflation. This implies that either insurance companies raise prices to make more money, or that the costs of natural disasters or other things covered by insurance also increases regularly, outpacing inflation and requiring insurance companies to increase rates over time.
 
-![Figure 2: Disasters and their monthly cost](./graphs/disaster_cost_and_by_type.png)
+![Disasters and their monthly cost](./graphs/disaster_cost_and_by_type.png)
 
 This figure has two parts, the left side shows us the frequency of a disaster related to it's cost and the right side Each recorded type of disaster by it's cost. This figure is meant to help viewers understand which events might be expected to have the greatest impact on insurance pricing. The results of both suggest that most months have very low or moderate damage, while a few months show extremely high spikes caused by major storms. Because these spikes are so large, they visually dominate the plot. The severely skewed right distribution shows that disaster severity varies widely from month to month. This visuale xplains why disaster costs may not correlate well with smooth, steadily rising insurance prices.
 
-![Figure 3: Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
+![Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
 
 This graph displays the cost of large natural disasters for each given month from 2009 and 2024, in millions. Overall, the cost seems to be relatively low with a few huge outlines Most of these come from hurricanes, as they are the most destructive and often don't span multiple months, and as such their cost is concentrated into a single month for our data. For example the two highest points in 2017 come mainly from Hurricane Harvey (\$160 billion in damage) and Hurricane Maria (\$115 billion in damage), in August and September respectively. The irregular timing of high cost disasters makes it hard to detect any predictable pattern over time. This unpredictability reduces the likelihood that disaster costs move in tandem with insurance prices. However, because of the height of these two points, much of the data is hard to tell apart. As such, below is the same data, except on a log scale.
 
-![Figure 4: Log of the disaster cost per month over time](./graphs/log_disaster_cost_vs_time.png)
+![Log of the disaster cost per month over time](./graphs/log_disaster_cost_vs_time.png)
 
 Some months had no large natural disasters during their time frame, and as such had 0 as their monthly cost data point. In order to generate this graph, we added 1 to each of the costs so they would be set to 0. However, this should not affect the graph much.
 
 Using a log scale helps spread out the smaller and midsized disaster costs so they’re easier to compare since the last figure's outliers were too extreme. Most disasters fall within a similar range once they were scaled, while only a few stand out as extremely expensive. There is still no clear positive trend across the recorded 15 year period. This suggests that while disasters vary in severity, their typical magnitude has not systematically increased. The lack of positive correlation in this graph contrasts with the smooth upward trend seen in insurance pricing.
 
-![Figure 5: Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
+![Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
 
 All three scatter plots (0,6, 12 month delay) look about the same to each other, with the red best fit line steepest for the 6 month delay. This means that if insurance prices increase due to large-scale natural disasters, it is most likely that it would be after 6 months. However, the correlation on these plots is all poor, as the vast majority of points hover on the left side and seem randomly distributed up and down, while there are very few outlier points on the right which seem to be the cause of the best fit line
 
