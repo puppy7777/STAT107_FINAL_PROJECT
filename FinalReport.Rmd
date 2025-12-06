@@ -60,4 +60,18 @@ With our data, we looked at how the financial costs of major natural disasters c
 
 ![Relative insurance prices given a year of delay](./graphs/damage_vs_price_diff_1_year.png)
 
+Across all three regression models, all of the p-values were above 0.05, meaning there is no statistically significant linear relationship between natural disaster costs and insurance prices within the same month However, this due because the insurance prices may take time to respond to disasters. To confirm this hypothesis, we examine whether stronger associations emerge when introducing 0-month, 6-month, and 12-month lags between disaster costs and insurance price changes.
+
+![Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
+
+By examining the relationship between disaster costs and the All Insurance Index using 0-, 6-, and 12-month lags, we see that:
+
+Same-Month: This scatterplot examines whether insurance prices rise immediately in months with expensive disasters. The points don’t show much of a pattern, which suggests that prices don’t react right away. It makes sense as insurers usually adjust rates after assessing the damage, not in the same month. It would be unreasonable to increase insurance rates directly after a severe tragedy.
+
+Lag 6 Months: Shifting disaster costs back by 6 months to assess delayed effects shows a slightly stronger correlation, with higher disaster costs linked to somewhat higher insurance prices half a year later. This suggests the market might take several months to reflect the impact of significant losses. It will likely take even longer to recover from them.
+
+Lag 12 Months/one-year lag: The relationship appears to have weakened or remains similar to the six-month one. The slope and scatter plots look nearly identical. This suggests that most pricing adjustments happen within 6 months and persist, but don’t intensify further by 12 months.
+
+Overall, the weak linear trends observed at all lag lengths help explain why the regression p-values were not statistically significant. There may be a slight delayed effect of natural disasters on insurance pricing, and the data does not show a strong or consistent linear relationship.
+
 Github link (code, visualizations, etc.): <https://github.com/puppy7777/STAT107_FINAL_PROJECT>
