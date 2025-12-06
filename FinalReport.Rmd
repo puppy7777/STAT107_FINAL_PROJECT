@@ -4,9 +4,7 @@ output:
   html_document: default
 ---
 
-# Title:
-
-The Financial Correlations of Major Natural Disasters on Insurance Prices
+# The Financial Correlations of Major Natural Disasters on Insurance Prices
 
 # Abstract:
 
@@ -34,29 +32,27 @@ We assigned a cost to each month by dividing each natural disasters' cost by the
 
 # Visualizations
 
-![Relative insurance prices over time](./graphs/insurance_prices_vs_time.png)
+![Figure 1: Relative insurance prices over time](./graphs/insurance_prices_vs_time.png)
 
-![Disasters and their monthly cost](./graphs/disaster_cost_and_by_type.png)
+We can see that insurance prices seem to rise steadily over time. As our data is already corrected for inflation, this means that the rate that insurance costs rises outpaces inflation. This implies that either insurance companies raise prices to make more money, or that the costs of natural disasters or other things covered by insurance also increases regularly, outpacing inflation and requiring insurance companies to increase rates over time.
 
-![Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
+![Figure 2: Disasters and their monthly cost](./graphs/disaster_cost_and_by_type.png)
 
-This graph displays the cost of large natural disasters for each given month from 2009 and 2024, in millions. Overall, the cost seems to be relatively low with a few huge outlines Most of these come from hurricanes, as they are the most destructive and often don't span multiple months, and as such their cost is concentrated into a single month for our data. For example the two highest points in 2017 come mainly from Hurricane Harvey (\$160 billion in damage) and Hurricane Maria (\$115 billion in damage), in August and September respectively. However, because of the height of these two points, much of the data is hard to tell apart. As such, below is the same data, except on a log scale.
+This figure has two parts, the left side shows us the frequency of a disaster related to it's cost and the right side Each recorded type of disaster by it's cost. This figure is meant to help viewers understand which events might be expected to have the greatest impact on insurance pricing. The results of both suggest that most months have very low or moderate damage, while a few months show extremely high spikes caused by major storms. Because these spikes are so large, they visually dominate the plot. The severely skewed right distribution shows that disaster severity varies widely from month to month. This visuale xplains why disaster costs may not correlate well with smooth, steadily rising insurance prices.
 
-![Log of the disaster cost per month over time](./graphs/log_disaster_cost_vs_time.png)
+![Figure 3: Disaster cost per month over time](./graphs/disaster_cost_vs_time.png)
+
+This graph displays the cost of large natural disasters for each given month from 2009 and 2024, in millions. Overall, the cost seems to be relatively low with a few huge outlines Most of these come from hurricanes, as they are the most destructive and often don't span multiple months, and as such their cost is concentrated into a single month for our data. For example the two highest points in 2017 come mainly from Hurricane Harvey (\$160 billion in damage) and Hurricane Maria (\$115 billion in damage), in August and September respectively. The irregular timing of high cost disasters makes it hard to detect any predictable pattern over time. This unpredictability reduces the likelihood that disaster costs move in tandem with insurance prices. However, because of the height of these two points, much of the data is hard to tell apart. As such, below is the same data, except on a log scale.
+
+![Figure 4: Log of the disaster cost per month over time](./graphs/log_disaster_cost_vs_time.png)
 
 Some months had no large natural disasters during their time frame, and as such had 0 as their monthly cost data point. In order to generate this graph, we added 1 to each of the costs so they would be set to 0. However, this should not affect the graph much.
 
-We can see that most natural disasters cause between 500 million to 5 billion dollars in destruction and other costs. If you squint, you may be able to see a positive correlation between time and the cost of diasters, although this correlation seems weak at best.
+Using a log scale helps spread out the smaller and midsized disaster costs so they’re easier to compare since the last figure's outliers were too extreme. Most disasters fall within a similar range once they were scaled, while only a few stand out as extremely expensive. There is still no clear positive trend across the recorded 15 year period. This suggests that while disasters vary in severity, their typical magnitude has not systematically increased. The lack of positive correlation in this graph contrasts with the smooth upward trend seen in insurance pricing.
 
-![Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
+![Figure 5: Relative insurance price vs Disaster Costs Over Time](./graphs/insurance_prices_vs_months.png)
 
-By examining the relationship between disaster costs and the All Insurance Index using 0-, 6-, and 12-month lags, we see that:
-
-Same-Month: This scatterplot examines whether insurance prices rise immediately in months with expensive disasters. The points don’t show much of a pattern, which suggests that prices don’t react right away. It makes sense as insurers usually adjust rates after assessing the damage, not in the same month. It would be unreasonable to increase insurance rates directly after a severe tragedy.
-
-Lag 6 Months: Shifting disaster costs back by 6 months to assess delayed effects shows a slightly stronger correlation, with higher disaster costs linked to somewhat higher insurance prices half a year later. This suggests the market might take several months to reflect the impact of significant losses. It will likely take even longer to recover from them.
-
-Lag 12 Months/one-year lag: The relationship appears to have weakened or remains similar to the six-month one. The slope and scatter plots look nearly identical. This suggests that most pricing adjustments happen within 6 months and persist, but don’t intensify further by 12 months.
+All three scatter plots (0,6, 12 month delay) look about the same to each other, with the red best fit line steepest for the 6 month delay. This means that if insurance prices increase due to large-scale natural disasters, it is most likely that it would be after 6 months. However, the correlation on these plots is all poor, as the vast majority of points hover on the left side and seem randomly distributed up and down, while there are very few outlier points on the right which seem to be the cause of the best fit line
 
 # Analysis
 
@@ -90,11 +86,13 @@ The minuscule coefficients, high p-values, and R squared values so low that they
 
 Overall, the weak linear trends observed at all lag lengths help explain why the regression p-values were not statistically significant. Even if there is a slight delayed effect of natural disasters on insurance pricing, the data does not show a strong nor consistent linear relationship.
 
+We also ran similar tests comparing overall insurance prices to property insurance prices, but the results were practically the same, with no correlation found.
 
 # Conclusion
 
 Overall, we were unable to find any linear correlation between the cost/destruction of large natural disasters and the price of property insurance in the US. This does make sense in a way, as insurance companies likely already take these risks into account when calculating insurance prices, and don't have to hike prices as they expect some natural disasters to occur.
 
-Additionally, we were unable to find a linear correlation between the destruction caused by natural disasters and time, implying that, thankfully, the damage casused by large-scale natural disasters has not been increasing.
+Additionally, we were unable to find a linear correlation between the destruction caused by natural disasters and time, implying that, thankfully, the damage caused by large-scale natural disasters has not been increasing.
 
-However, we did find a very strong linear correlation between the price of insurance and time. This implication, along with the very small p-value and high R squared, implies that insurance companies regularly hike the price of property insurance, even as the daamage caused by large-scale natural disasters does not change.
+However, we did find a very strong linear correlation between the price of insurance and time. This implication, along with the very small p-value and high R squared, implies that insurance companies regularly hike the price of property insurance, even as the damage caused by large-scale natural disasters does not change.
+

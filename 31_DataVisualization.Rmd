@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 ```{r}
 # Load your data files (you can comment out one if not needed)
+rm(list = ls())
+source("00_requirements.R")
 load("22_processedData.RData")
 
 # Convert key columns to correct types
@@ -239,10 +241,14 @@ models. Looking at this graph disasters seem to have a more short term
 impact on insurance prices overall.
 
 ```{r}
+#these are our graphs of disaster costs over time, first is linear scale second is log scale - not really any sort of correlation visible except maybe a slight upwards correlation for log scale
+
 plot(Disaster_Cost ~ Insurance_Month, data = all_insurance, pch = 20, ylab = "Monthly cost of billion-dollar natural disasters", xlab = "Time")
 
 plot(Disaster_Cost ~ Insurance_Month, data = all_insurance, pch = 20, log = "y", ylab = "Monthly cost of billion-dollar natural disasters", xlab = "Time")
 ```
+
+running linear regression on these two graphs:
 
 ```{r}
 disaster_time <- lm(Disaster_Cost ~ Insurance_Month, data = all_insurance)
@@ -255,6 +261,9 @@ summary(log_disaster_time)
 
 ```
 
+above shows that disaster costs are not correlated with time, what about
+disaster costs leading to increase in property insurance?
+
 ```{r}
 disaster_insurance <- lm(Property_Insurance_Index  ~ Disaster_Cost, data = all_insurance)
 summary(disaster_insurance)
@@ -262,6 +271,10 @@ summary(disaster_insurance)
 log_disaster_insurance <- lm(Property_Insurance_Index ~ log(ModifiedDisaster) , data = all_insurance)
 summary(log_disaster_insurance)
 ```
+
+We checked both linear disaster cost as well a log(disaster cost), but
+neither had any correlation. We also check overall insurance prices,
+although I personally doubt it will be different
 
 ```{r}
 disaster_all <- lm(All_Insurance_Index ~ Disaster_Cost, data = all_insurance)
@@ -271,10 +284,18 @@ log_disaster_all <- lm(All_Insurance_Index ~ log(ModifiedDisaster), data = all_i
 summary(log_disaster_all)
 ```
 
+We have determined there is no linear correlation beteween insurance
+prices and the scale of natural disasters, but what if insruance prices
+just keep going up with time?
+
 ```{r}
 insurance_time <- lm(Property_Insurance_Index ~ Insurance_Month, data = all_insurance)
 summary(insurance_time)
 ```
+
+this does seem to be the case. We can also check to see if there is a
+delay in insurance prices increasing as a cuase of large natural
+disasters - we can check 1 month 6 month and 12 month delays
 
 ```{r}
 delayed_damage <- data.frame(
@@ -306,6 +327,8 @@ delayed_damage$ModifiedDamage <- all_insurance$ModifiedDisaster
 
 ```
 
+linear regression run below
+
 ```{r}
 #see if the price change from 1 year ago to now is correlated with the damage from a month
 #plot(diff_1_year ~ Monthly_Damage, data = delayed_damage, pch = 20)
@@ -319,8 +342,13 @@ year_delay <- lm(diff_1_year~ Monthly_Damage, data = delayed_damage)
 summary(year_delay)
 ```
 
+we also run 1 year delayed with the log of the damage done, but to no
+results. we could run this for the other time groups but that feels
+excessive-it seems pretty clear there is no correlation.
+
 ```{r}
 plot(diff_1_year ~ ModifiedDamage, data = delayed_damage, pch = 20, log = "x", xlab = "Natural Disaster Damage During a Given Month", ylab = "Relative Price of Property Insurance 1 Year Later")
 year_delay <- lm(diff_1_year~ log(ModifiedDamage), data = delayed_damage)
 summary(year_delay)
+print("end of 31")
 ```
